@@ -17,6 +17,22 @@ app.use("/api/test", testRoutes);
 const aiRoutes = require("./routes/aiRoutes");
 app.use("/api/ai", aiRoutes);
 
+const childRoutes = require("./routes/childRoutes");
+app.use("/api/children", childRoutes);
+
+const donationRoutes = require("./routes/donationRoutes");
+app.use("/api/donations", donationRoutes);
+
+const medicalRoutes = require("./routes/medicalRoutes");
+app.use("/api/medical", medicalRoutes);
+
+const opportunityRoutes = require("./routes/opportunityRoutes");
+app.use("/api/opportunities", opportunityRoutes);
+
+const schemeRoutes = require("./routes/schemeRoutes");
+app.use("/api/schemes", schemeRoutes);
+
+
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
@@ -27,7 +43,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
+  console.log('Address:', server.address());
 });
 

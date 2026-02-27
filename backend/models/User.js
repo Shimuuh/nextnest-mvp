@@ -19,6 +19,23 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["admin", "donor", "orphanage", "careleaver"],
       required: true
+    },
+    // Specific fields for different roles
+    orphanageDetails: {
+      registrationNumber: String,
+      capacity: Number,
+      currentChildrenCount: Number,
+      address: String,
+      contactPerson: String
+    },
+    donorPreferences: {
+      preferredCauses: [String], // e.g., 'education', 'medical', 'general'
+      isAnonymous: { type: Boolean, default: false }
+    },
+    careleaverDetails: {
+      dateOfExit: Date,
+      currentStatus: String, // e.g., 'studying', 'working', 'unemployed'
+      assignedMentor: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
     }
   },
   { timestamps: true }

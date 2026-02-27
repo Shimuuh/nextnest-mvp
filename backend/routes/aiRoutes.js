@@ -1,24 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const { predictRisk, matchSchemes, processDocument, matchOpportunity } = require("../controllers/aiController");
 const { protect } = require("../middleware/authMiddleware");
 
-// Protected AI recommendation route
-router.post("/recommend", protect, (req, res) => {
-  const { profile } = req.body;
+// All AI functionalities require protection
+router.use(protect);
 
-  // Fake AI logic
-  let recommendation = "General Support Program";
-
-  if (profile?.education === "12th") {
-    recommendation = "Scholarship Program A";
-  } else if (profile?.skill === "coding") {
-    recommendation = "Tech Internship Opportunity";
-  }
-
-  res.json({
-    message: "AI recommendation generated",
-    recommendation
-  });
-});
+router.get("/predict-risk/:childId", predictRisk);
+router.get("/match-schemes/:childId", matchSchemes);
+router.post("/process-document", processDocument);
+router.get("/match-opportunity/:childId", matchOpportunity);
 
 module.exports = router;
