@@ -14,6 +14,9 @@ app.use("/api/auth", authRoutes);
 const testRoutes = require("./routes/testRoutes");
 app.use("/api/test", testRoutes);
 
+const aiRoutes = require("./routes/aiRoutes");
+app.use("/api/ai", aiRoutes);
+
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
