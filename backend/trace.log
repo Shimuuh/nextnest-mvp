@@ -1,0 +1,231 @@
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772196906931@test.com","password":"$2b$10$hsyKTpsvYJaDG11wSnz1k.m7gqifnne/z36IqNwFp7diaR6Jb67Ae","role":"orphanage","_id":"69a1942b6befdf2400ea4e1a","createdAt":"2026-02-27T12:55:07.027Z","updatedAt":"2026-02-27T12:55:07.027Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772196906931@test.com","password":"$2b$10$FvC.ojbFtXW5w4EgXxPQ7ervLoys0itc8nTzl99YX8uFeMLDxRi5u","role":"admin","_id":"69a1942b6befdf2400ea4e1d","createdAt":"2026-02-27T12:55:07.091Z","updatedAt":"2026-02-27T12:55:07.091Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5NDJiNmJlZmRmMjQwMGVhNGUxYSIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIxOTY5MDcsImV4cCI6MTc3MjI4MzMwN30.xlH3fL0-R7AuFHIcMRmKA0AziCNa4aASWWNfyu3P3FU","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5NDJiNmJlZmRmMjQwMGVhNGUxZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjE5NjkwNywiZXhwIjoxNzcyMjgzMzA3fQ.dtvuI5Uzh4qZRtTbVtLr8e2A0g8XKN2zidPS2M4w2nw","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"orphanage":"69a1942b6befdf2400ea4e1a","_id":"69a1942b6befdf2400ea4e21","createdAt":"2026-02-27T12:55:07.229Z","updatedAt":"2026-02-27T12:55:07.229Z","__v":0}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772196960797@test.com","password":"$2b$10$gZZHPeEd/9FbUhVcZMxVFOLo13OG9LHEWTp7vZWSX74wEaXHusJP.","role":"orphanage","_id":"69a194606befdf2400ea4e24","createdAt":"2026-02-27T12:56:00.891Z","updatedAt":"2026-02-27T12:56:00.891Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772196960797@test.com","password":"$2b$10$yvCjhl..FS7P7QG261MGb.X1X.4qCA3ys8zCe6ypCn3tbjFME7Liy","role":"admin","_id":"69a194606befdf2400ea4e27","createdAt":"2026-02-27T12:56:00.956Z","updatedAt":"2026-02-27T12:56:00.956Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5NDYwNmJlZmRmMjQwMGVhNGUyNCIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIxOTY5NjEsImV4cCI6MTc3MjI4MzM2MX0.E-q-jTC9SCJA2JBBKBXUOW0WARtmN4nnGPtY5Oa02VE","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5NDYwNmJlZmRmMjQwMGVhNGUyNyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjE5Njk2MSwiZXhwIjoxNzcyMjgzMzYxfQ.dWjvunY1mpTWjWCwBNyf4qic5hyzDvfDxHfZyL97Iaw","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"orphanage":"69a194606befdf2400ea4e24","_id":"69a194616befdf2400ea4e2b","createdAt":"2026-02-27T12:56:01.076Z","updatedAt":"2026-02-27T12:56:01.076Z","__v":0}
+
+[POST /opportunities] Status: 404
+Failed to parse JSON.
+
+[GET /ai/predict-risk/69a194616befdf2400ea4e2b] Status: 404
+Failed to parse JSON.
+
+[GET /ai/match-schemes/69a194616befdf2400ea4e2b] Status: 404
+Failed to parse JSON.
+
+[GET /ai/match-opportunity/69a194616befdf2400ea4e2b] Status: 404
+Failed to parse JSON.
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772197080618@test.com","password":"$2b$10$UqtgmWgiA3SavVsq5IM.KeM77INmvpRF2C7J/1EzgdwOpBJLLjSdO","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a194d80bb42f963a2cc4c2","createdAt":"2026-02-27T12:58:00.784Z","updatedAt":"2026-02-27T12:58:00.784Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772197080618@test.com","password":"$2b$10$DS6X3RsIF4iJG32EHhGTp.QGF4MxRmqguwRbgB6BQqJfN9l1BhhWy","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a194d80bb42f963a2cc4c5","createdAt":"2026-02-27T12:58:00.876Z","updatedAt":"2026-02-27T12:58:00.876Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5NGQ4MGJiNDJmOTYzYTJjYzRjMiIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIxOTcwODAsImV4cCI6MTc3MjI4MzQ4MH0.5u62G91KWumDwLBBo60-xgS8QLHnF7wUulLHj4RwS_k","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5NGQ4MGJiNDJmOTYzYTJjYzRjNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjE5NzA4MSwiZXhwIjoxNzcyMjgzNDgxfQ.NfUUu0e9x-Rpt-cypZfbX8garbwYgmQslMjacrIIduA","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a194d90bb42f963a2cc4ca","date":"2026-02-27T12:58:01.007Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a194d90bb42f963a2cc4c9","documents":[],"createdAt":"2026-02-27T12:58:01.008Z","updatedAt":"2026-02-27T12:58:01.008Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a194d90bb42f963a2cc4cc","createdAt":"2026-02-27T12:58:01.013Z","updatedAt":"2026-02-27T12:58:01.013Z","__v":0}}
+
+[GET /ai/predict-risk/69a194d90bb42f963a2cc4c9] Status: 200
+Body: {"success":true,"analysis":{"riskScore":35,"riskLevel":"medium","distressIndicators":["Slight drop in attendance","Recent negative behavioral note"],"recommendations":["Schedule a 1-on-1 counseling session","Assign peer mentor"]}}
+
+[GET /ai/match-schemes/69a194d90bb42f963a2cc4c9] Status: 200
+Body: {"success":true,"matches":[{"schemeId":"mockId","matchConfidence":90,"reasoning":"Child is above 15 and interested in vocational training."}]}
+
+[GET /ai/match-opportunity/69a194d90bb42f963a2cc4c9] Status: 200
+Body: {"success":true,"recommendations":{"topMatches":[{"opportunityId":"69a194d90bb42f963a2cc4cc","probabilityOfSuccess":85,"reasoning":"High aptitude in related subjects and perfect attendance."}]}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772197832384@test.com","password":"$2b$10$9CT1LXJRiL9cBIQ72TxjL.L6NuJf63QTRcgW/Kt7jjZ9DK4xpxtIi","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a197c877930c05d1cef59f","createdAt":"2026-02-27T13:10:32.504Z","updatedAt":"2026-02-27T13:10:32.504Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772197832384@test.com","password":"$2b$10$h4rbs4CMNQTyv0tpoFAx7OQen73V66CrNhfJbq8CTvire/ovHDSue","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a197c877930c05d1cef5a2","createdAt":"2026-02-27T13:10:32.573Z","updatedAt":"2026-02-27T13:10:32.573Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5N2M4Nzc5MzBjMDVkMWNlZjU5ZiIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIxOTc4MzIsImV4cCI6MTc3MjI4NDIzMn0.eqjkXDTTRTrLLFsf_fhbu_miCJKq919Lwf8HDDGXzSw","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTE5N2M4Nzc5MzBjMDVkMWNlZjVhMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjE5NzgzMiwiZXhwIjoxNzcyMjg0MjMyfQ.jmLXv8V9oAf_xmGpoNbaml8I5Qb_OqUtr9RKyj5o1W0","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a197c877930c05d1cef5a7","date":"2026-02-27T13:10:32.700Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a197c877930c05d1cef5a6","documents":[],"createdAt":"2026-02-27T13:10:32.701Z","updatedAt":"2026-02-27T13:10:32.701Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a197c877930c05d1cef5a9","createdAt":"2026-02-27T13:10:32.705Z","updatedAt":"2026-02-27T13:10:32.705Z","__v":0}}
+
+[GET /ai/predict-risk/69a197c877930c05d1cef5a6] Status: 200
+Body: {"success":true,"analysis":{"riskScore":35,"riskLevel":"medium","distressIndicators":["Slight drop in attendance","Recent negative behavioral note"],"recommendations":["Schedule a 1-on-1 counseling session","Assign peer mentor"]}}
+
+[GET /ai/match-schemes/69a197c877930c05d1cef5a6] Status: 200
+Body: {"success":true,"matches":[{"schemeId":"mockId","matchConfidence":90,"reasoning":"Child is above 15 and interested in vocational training."}]}
+
+[GET /ai/match-opportunity/69a197c877930c05d1cef5a6] Status: 200
+Body: {"success":true,"recommendations":{"topMatches":[{"opportunityId":"69a194d90bb42f963a2cc4cc","probabilityOfSuccess":85,"reasoning":"High aptitude in related subjects and perfect attendance."}]}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772202805730@test.com","password":"$2b$10$H5Q5sMJzf6OXnknSjvF6aOo76768f1Zb4JsQ1dbNt7e8k6i75dUOG","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1ab3595ab011c8caab1d9","createdAt":"2026-02-27T14:33:25.831Z","updatedAt":"2026-02-27T14:33:25.831Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772202805730@test.com","password":"$2b$10$cR0XbLYgpVZTsjYeG5aP8uRfEXZM9Bv2GZK2Ue0X0DFHCFqnGVi.u","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1ab3595ab011c8caab1dc","createdAt":"2026-02-27T14:33:25.897Z","updatedAt":"2026-02-27T14:33:25.897Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhYjM1OTVhYjAxMWM4Y2FhYjFkOSIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIyMDI4MDUsImV4cCI6MTc3MjI4OTIwNX0.7feb3q1-AdCJuhoc-fQltwv9mBsvQkF0kVu9Izo6X3k","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhYjM1OTVhYjAxMWM4Y2FhYjFkYyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjIwMjgwNiwiZXhwIjoxNzcyMjg5MjA2fQ.5QyEXYz_0SepqpDzd-PjoscM4a1q-xuLBLEeTO79kqQ","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a1ab3695ab011c8caab1e1","date":"2026-02-27T14:33:26.021Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a1ab3695ab011c8caab1e0","documents":[],"createdAt":"2026-02-27T14:33:26.022Z","updatedAt":"2026-02-27T14:33:26.022Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a1ab3695ab011c8caab1e3","createdAt":"2026-02-27T14:33:26.026Z","updatedAt":"2026-02-27T14:33:26.026Z","__v":0}}
+
+[GET /ai/predict-risk/69a1ab3695ab011c8caab1e0] Status: 200
+Body: {"success":true,"analysis":{"riskScore":35,"riskLevel":"medium","distressIndicators":["Slight drop in attendance","Recent negative behavioral note"],"recommendations":["Schedule a 1-on-1 counseling session","Assign peer mentor"]}}
+
+[GET /ai/match-schemes/69a1ab3695ab011c8caab1e0] Status: 200
+Body: {"success":true,"matches":[{"schemeId":"mockId","matchConfidence":90,"reasoning":"Child is above 15 and interested in vocational training."}]}
+
+[GET /ai/match-opportunity/69a1ab3695ab011c8caab1e0] Status: 200
+Body: {"success":true,"recommendations":{"topMatches":[{"opportunityId":"69a194d90bb42f963a2cc4cc","probabilityOfSuccess":85,"reasoning":"High aptitude in related subjects and perfect attendance."}]}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772203060244@test.com","password":"$2b$10$91fFCuF7iUNuKGPWKfv0DuJWujB3HvCatQciH3pLVhsDLwzvKKtC2","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1ac346db494c3c5902da1","createdAt":"2026-02-27T14:37:40.360Z","updatedAt":"2026-02-27T14:37:40.360Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772203060244@test.com","password":"$2b$10$lDjEqpF/..oK6RQT9lMIMu04shveZDEEGNkDJk.eHsF.qYZkcMnwi","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1ac346db494c3c5902da4","createdAt":"2026-02-27T14:37:40.429Z","updatedAt":"2026-02-27T14:37:40.429Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhYzM0NmRiNDk0YzNjNTkwMmRhMSIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIyMDMwNjAsImV4cCI6MTc3MjI4OTQ2MH0.d6W3vwunEKpVTtBlEsTCr3dXNq2Cdivkt6qqx6uAOKA","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhYzM0NmRiNDk0YzNjNTkwMmRhNCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjIwMzA2MCwiZXhwIjoxNzcyMjg5NDYwfQ.qYej2Ppm111wHysyaf9xTGq3TmLP837l51K1mFB1KJ8","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a1ac346db494c3c5902da9","date":"2026-02-27T14:37:40.557Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a1ac346db494c3c5902da8","documents":[],"createdAt":"2026-02-27T14:37:40.558Z","updatedAt":"2026-02-27T14:37:40.558Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a1ac346db494c3c5902dab","createdAt":"2026-02-27T14:37:40.562Z","updatedAt":"2026-02-27T14:37:40.562Z","__v":0}}
+
+[GET /ai/predict-risk/69a1ac346db494c3c5902da8] Status: 500
+Body: {"success":false,"message":""}
+
+[GET /ai/match-schemes/69a1ac346db494c3c5902da8] Status: 500
+Body: {"success":false,"message":""}
+
+[GET /ai/match-opportunity/69a1ac346db494c3c5902da8] Status: 500
+Body: {"success":false,"message":""}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772203364826@test.com","password":"$2b$10$H9PUF03Lxsm6izgPoBOc0uCnbIWt5SeZtkzrv8siu9w2r7iAic8XG","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1ad646db494c3c5902db6","createdAt":"2026-02-27T14:42:44.922Z","updatedAt":"2026-02-27T14:42:44.922Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772203364826@test.com","password":"$2b$10$xBlvYdGUlJE9UPfBHMF/qOjb7dPLauMKV3U4F6TbyRq/8t.K5gziG","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1ad646db494c3c5902db9","createdAt":"2026-02-27T14:42:44.987Z","updatedAt":"2026-02-27T14:42:44.987Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhZDY0NmRiNDk0YzNjNTkwMmRiNiIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIyMDMzNjUsImV4cCI6MTc3MjI4OTc2NX0.7A52hjWIep1OrktoAVOwjqxrOCwxMedpJVQayuh06Bg","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhZDY0NmRiNDk0YzNjNTkwMmRiOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjIwMzM2NSwiZXhwIjoxNzcyMjg5NzY1fQ.L--oS4ptQrAHUjFTOBo3CNVnZLoa6EZofIbo4BqQkkQ","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a1ad656db494c3c5902dbe","date":"2026-02-27T14:42:45.107Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a1ad656db494c3c5902dbd","documents":[],"createdAt":"2026-02-27T14:42:45.107Z","updatedAt":"2026-02-27T14:42:45.107Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a1ad656db494c3c5902dc0","createdAt":"2026-02-27T14:42:45.112Z","updatedAt":"2026-02-27T14:42:45.112Z","__v":0}}
+
+[GET /ai/predict-risk/69a1ad656db494c3c5902dbd] Status: 200
+Body: {"success":true,"analysis":{"riskScore":50,"riskLevel":"Medium","distressIndicators":["Analysis pending"],"recommendations":["Monitor closely"]}}
+
+[GET /ai/match-schemes/69a1ad656db494c3c5902dbd] Status: 200
+Body: {"success":true,"matches":[]}
+
+[GET /ai/match-opportunity/69a1ad656db494c3c5902dbd] Status: 200
+Body: {"success":true,"recommendations":{}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772203681448@test.com","password":"$2b$10$jiJSh9LHS8LCWVWJF9o.lupIxI5KUHKHRHVQ6QRo/r1KI0KvwBWgy","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1aea16db494c3c5902dcb","createdAt":"2026-02-27T14:48:01.541Z","updatedAt":"2026-02-27T14:48:01.541Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772203681448@test.com","password":"$2b$10$7UEoIrmym.xvapxzlkF0HOnSR5S4a7AYktAcy7Pmg3Cdc3aEjNlJu","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1aea16db494c3c5902dce","createdAt":"2026-02-27T14:48:01.605Z","updatedAt":"2026-02-27T14:48:01.605Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhZWExNmRiNDk0YzNjNTkwMmRjYiIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIyMDM2ODEsImV4cCI6MTc3MjI5MDA4MX0.MmhkaEI8FceKgqL4DM_vP0z_Mje4-2dd7si0CXdUCf8","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFhZWExNmRiNDk0YzNjNTkwMmRjZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjIwMzY4MSwiZXhwIjoxNzcyMjkwMDgxfQ.q1Gkk6SHp9ppPTt9tCnrf8NqO_lGFhiS9gzS0t2brWA","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a1aea16db494c3c5902dd3","date":"2026-02-27T14:48:01.725Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a1aea16db494c3c5902dd2","documents":[],"createdAt":"2026-02-27T14:48:01.726Z","updatedAt":"2026-02-27T14:48:01.726Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a1aea16db494c3c5902dd5","createdAt":"2026-02-27T14:48:01.729Z","updatedAt":"2026-02-27T14:48:01.729Z","__v":0}}
+
+[GET /ai/predict-risk/69a1aea16db494c3c5902dd2] Status: 200
+Body: {"success":true,"analysis":{"riskScore":67,"riskLevel":"Medium","distressIndicators":["Dropping attendance","Recent decline in academic performance","Withdrawn behavior"],"recommendations":["Regular counseling sessions to address potential emotional issues","Individualized academic support to improve performance","Encourage participation in extracurricular activities to boost social skills and confidence","Monitor attendance and provide incentives for regular attendance"]}}
+
+[GET /ai/match-schemes/69a1aea16db494c3c5902dd2] Status: 200
+Body: {"success":true,"matches":[]}
+
+[GET /ai/match-opportunity/69a1aea16db494c3c5902dd2] Status: 200
+Body: {"success":true,"recommendations":{"readinessScore":40,"topMatches":[{"opportunityId":"69a1aea16db494c3c5902dd5","title":"Vocational IT Training & Placement","probabilityOfSuccess":60,"reasoning":"The youth meets the basic requirement of 10th Grade pass, and the vocational training can help improve their skills and employability. However, the youth's recent withdrawal and dropping scores are concerns that need to be addressed.","skillGaps":["Coding skills","Communication skills","Teamwork skills"]}]}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"Hope Foundation Orphanage","email":"orphanage_1772209507993@test.com","password":"$2b$10$JU/.uukhqfPk6OpM8rwkZ.oZvMvvomWyz4d3JmKd7TAoGKgVfbcqi","role":"orphanage","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1c56444ce345b4cafc15e","createdAt":"2026-02-27T16:25:08.109Z","updatedAt":"2026-02-27T16:25:08.109Z","__v":0}}
+
+[POST /auth/register] Status: 201
+Body: {"message":"User registered successfully","user":{"name":"System Admin","email":"admin_1772209507993@test.com","password":"$2b$10$EtESS8Wk/QKECs9/SY3N.ed9TLWy2jVhdURNOU3DaP4i.FqRUeZSG","role":"admin","donorPreferences":{"preferredCauses":[],"isAnonymous":false},"_id":"69a1c56444ce345b4cafc161","createdAt":"2026-02-27T16:25:08.176Z","updatedAt":"2026-02-27T16:25:08.176Z","__v":0}}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFjNTY0NDRjZTM0NWI0Y2FmYzE1ZSIsInJvbGUiOiJvcnBoYW5hZ2UiLCJpYXQiOjE3NzIyMDk1MDgsImV4cCI6MTc3MjI5NTkwOH0.iHGTV8V5Bk6ZEFf15YUcF4xSIfXJu8mcx1g9jdZ3dI0","role":"orphanage"}
+
+[POST /auth/login] Status: 200
+Body: {"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTFjNTY0NDRjZTM0NWI0Y2FmYzE2MSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjIwOTUwOCwiZXhwIjoxNzcyMjk1OTA4fQ.MyvtYgtxHXIjG_LAl9a6Auq38zzw3cUqdhUf3c7CdvY","role":"admin"}
+
+[POST /children] Status: 201
+Body: {"success":true,"data":{"name":"Rahul M.","age":16,"education":"10th Grade","skills":["Mathematics","Drawing"],"attendanceStats":{"percentage":82},"academicRecord":{"currentGrade":"C+","performanceScore":65,"notes":"Scores dropping recently"},"behavioralNotes":[{"note":"Has been quiet and withdrawn this week","severity":"medium","_id":"69a1c56444ce345b4cafc166","date":"2026-02-27T16:25:08.303Z"}],"transitionTimeline":{"recommendedPathways":[]},"achievements":[],"_id":"69a1c56444ce345b4cafc165","documents":[],"createdAt":"2026-02-27T16:25:08.304Z","updatedAt":"2026-02-27T16:25:08.304Z","__v":0}}
+
+[POST /opportunities] Status: 201
+Body: {"success":true,"data":{"title":"Vocational IT Training & Placement","type":"vocational","provider":{"name":"Tech For Good NGO"},"description":"6-month coding bootcamp for care leavers.","requirements":["10th Grade pass"],"status":"active","_id":"69a1c56444ce345b4cafc168","createdAt":"2026-02-27T16:25:08.308Z","updatedAt":"2026-02-27T16:25:08.308Z","__v":0}}
+
+[GET /ai/predict-risk/69a1c56444ce345b4cafc165] Status: 200
+Body: {"success":true,"analysis":{"riskScore":67,"riskLevel":"Medium","distressIndicators":["Dropping attendance","Recent decline in academic performance","Withdrawn behavior"],"recommendations":["Provide individualized academic support to address declining grades","Encourage participation in extracurricular activities to boost social interaction","Schedule regular counseling sessions to address potential emotional distress","Monitor attendance and provide incentives for improved attendance"]}}
+
+[GET /ai/match-schemes/69a1c56444ce345b4cafc165] Status: 200
+Body: {"success":true,"matches":[]}
+
+[GET /ai/match-opportunity/69a1c56444ce345b4cafc165] Status: 200
+Body: {"success":true,"recommendations":{"readinessScore":40,"topMatches":[{"opportunityId":"69a1c56444ce345b4cafc168","title":"Vocational IT Training & Placement","probabilityOfSuccess":60,"reasoning":"The youth meets the basic requirement of 10th Grade pass, and the vocational training could help develop new skills and improve employability.","skillGaps":["Coding","Computer Science","Problem-solving"]}]}}

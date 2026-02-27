@@ -5,7 +5,9 @@ const jwt = require("jsonwebtoken");
 // REGISTER
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    let { name, email, password, role } = req.body;
+
+    if (email) email = email.trim().toLowerCase();
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -34,7 +36,10 @@ exports.register = async (req, res) => {
 // LOGIN
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+
+    // Normalize email to prevent whitespace/casing issues from copy-pasting
+    if (email) email = email.trim().toLowerCase();
 
     const user = await User.findOne({ email });
     if (!user) {

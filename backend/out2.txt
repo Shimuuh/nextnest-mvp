@@ -1,0 +1,9 @@
+﻿================================================
+≡ƒÜÇ STARTING NEXTNEST BACKEND SIMULATION
+================================================
+
+Γ₧í∩╕Å Step 1: Registering Users (Orphanage & Admin)...
+Γ₧í∩╕Å Step 2: Authenticating to get JWT Tokens...
+
+Γ₧í∩╕Å Step 3: Orphanage registering a Child Profile with monitoring data...
+Failed to create child. Exiting.

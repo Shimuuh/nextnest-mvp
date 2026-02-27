@@ -9,8 +9,14 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List, Dict, Any
 import uvicorn
+
+from agent.risk_agent import analyze_risk
+from agent.scheme_agent import match_schemes
+from agent.opportunity_agent import match_opportunities
+from agent.document_agent import process_document
+from agent.chat_agent import chat_with_data
 
 # We will build this file in Step 3
 # For now it is imported but operator.py does not exist yet
@@ -65,39 +71,54 @@ class AgentResponse(BaseModel):
     requires_confirmation: bool = False # True = frontend should show a Confirm button
 
 # ------------------------------------------------------------
-# ENDPOINT 1: POST /agent
-# This is the main endpoint. Node.js calls this every time
-# the user sends a message OR confirms an action.
+# AI ENDPOINTS FOR NODE.JS
 # ------------------------------------------------------------
-@app.post("/agent", response_model=AgentResponse)
-async def agent_endpoint(request: UserRequest):
-    """
-    Main agent endpoint.
 
-    Flow:
-    1. User sends message → confirmation=False
-       Agent understands intent, proposes plan, returns requires_confirmation=True
-    
-    2. User clicks Confirm → Node.js resends same message with confirmation=True
-       Agent executes the action, returns result
-    """
+class RiskRequest(BaseModel):
+    childData: dict
 
-    # ------- TEMPORARY: until operator.py is ready -------
-    # This simulates what the operator will return
-    # Replace this block once operator.py is built
+@app.post("/ai/risk")
+async def get_risk_analysis(req: RiskRequest):
+    return analyze_risk(req.childData)
 
-    return AgentResponse(
-        status="proposal",
-        message=f"Received your message: '{request.message}'. Operator not connected yet.",
-        workflow=None,
-        proposal=None,
-        result=None,
-        requires_confirmation=False
-    )
 
-    # ------- REAL CODE (uncomment after operator.py is ready) -------
-    # result = await handle_request(request)
-    # return result
+class SchemeRequest(BaseModel):
+    childData: dict
+    availableSchemes: List[Dict[str, Any]]
+
+@app.post("/ai/schemes")
+async def get_scheme_matches(req: SchemeRequest):
+    return match_schemes(req.childData, req.availableSchemes)
+
+
+class OpportunityRequest(BaseModel):
+    childData: dict
+    availableOpportunities: List[Dict[str, Any]]
+
+@app.post("/ai/opportunities")
+async def get_opportunity_matches(req: OpportunityRequest):
+    return match_opportunities(req.childData, req.availableOpportunities)
+
+
+class DocumentRequest(BaseModel):
+    imageUrl: str
+    documentType: str
+
+@app.post("/ai/document")
+async def extract_document(req: DocumentRequest):
+    return process_document(req.imageUrl, req.documentType)
+
+class ChatRequest(BaseModel):
+    message: str
+    userRole: str
+
+@app.post("/ai/chat")
+async def ai_chat(req: ChatRequest):
+    return chat_with_data(req.message, req.userRole)
+
+# ------------------------------------------------------------
+# LEGACY CHATBOT ENDPOINT (Placeholder)
+# ------------------------------------------------------------
 
 # ------------------------------------------------------------
 # ENDPOINT 2: GET /health
