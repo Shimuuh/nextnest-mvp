@@ -17,6 +17,13 @@ app.use("/api/test", testRoutes);
 const aiRoutes = require("./routes/aiRoutes");
 app.use("/api/ai", aiRoutes);
 
+const childRoutes = require("./routes/childRoutes");
+app.use("/api/children", childRoutes);
+
+const donationRoutes = require("./routes/donationRoutes");
+app.use("/api/donations", donationRoutes);
+
+
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
