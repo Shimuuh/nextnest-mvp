@@ -23,6 +23,15 @@ app.use("/api/children", childRoutes);
 const donationRoutes = require("./routes/donationRoutes");
 app.use("/api/donations", donationRoutes);
 
+const medicalRoutes = require("./routes/medicalRoutes");
+app.use("/api/medical", medicalRoutes);
+
+const opportunityRoutes = require("./routes/opportunityRoutes");
+app.use("/api/opportunities", opportunityRoutes);
+
+const schemeRoutes = require("./routes/schemeRoutes");
+app.use("/api/schemes", schemeRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("API Running...");

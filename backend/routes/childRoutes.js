@@ -1,26 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const Child = require("../models/Child");
+const { createChild, getChildren, getChild, updateChild, deleteChild } = require("../controllers/childController");
 const { protect, authorize } = require("../middleware/authMiddleware");
 
-// Create child (only orphanage)
-router.post("/", protect, authorize("orphanage"), async (req, res) => {
-  try {
-    const child = await Child.create({
-      ...req.body,
-      orphanage: req.user.id
-    });
+// Protect all routes
+router.use(protect);
 
-    res.status(201).json(child);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to create child" });
-  }
-});
+router.route("/")
+  .get(getChildren)
+  .post(authorize("orphanage", "admin"), createChild);
 
-// Get all children
-router.get("/", protect, async (req, res) => {
-  const children = await Child.find().populate("orphanage", "name email");
-  res.json(children);
-});
+router.route("/:id")
+  .get(getChild)
+  .put(authorize("orphanage", "admin"), updateChild)
+  .delete(authorize("orphanage", "admin"), deleteChild);
 
 module.exports = router;
