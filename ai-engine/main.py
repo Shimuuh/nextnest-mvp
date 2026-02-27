@@ -12,10 +12,7 @@ from pydantic import BaseModel
 from typing import Optional
 import uvicorn
 
-# We will build this file in Step 3
-# For now it is imported but operator.py does not exist yet
-# Uncomment this once operator.py is ready:
-# from agent.operator import handle_request
+from agent.operator import handle_request
 
 # ------------------------------------------------------------
 # App Setup
@@ -82,22 +79,9 @@ async def agent_endpoint(request: UserRequest):
        Agent executes the action, returns result
     """
 
-    # ------- TEMPORARY: until operator.py is ready -------
-    # This simulates what the operator will return
-    # Replace this block once operator.py is built
-
-    return AgentResponse(
-        status="proposal",
-        message=f"Received your message: '{request.message}'. Operator not connected yet.",
-        workflow=None,
-        proposal=None,
-        result=None,
-        requires_confirmation=False
-    )
-
-    # ------- REAL CODE (uncomment after operator.py is ready) -------
-    # result = await handle_request(request)
-    # return result
+    # Operator handles everything — classify → route → propose/execute
+    result = await handle_request(request)
+    return result
 
 # ------------------------------------------------------------
 # ENDPOINT 2: GET /health

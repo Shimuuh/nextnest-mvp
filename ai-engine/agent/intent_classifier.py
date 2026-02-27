@@ -16,6 +16,7 @@ import json
 import re
 from typing import Optional
 from pydantic import BaseModel
+from config.settings import LLM_PROVIDER, get_llm
 
 # ============================================================
 # Intent Model
@@ -79,16 +80,14 @@ async def classify(message: str, session_id: str = "") -> Intent:
         Intent object with workflow, amount, filters, confidence
     """
 
-    # Check if an LLM API key is configured
-    # If yes → use LLM for smart classification
-    # If no  → use keyword fallback (works without any API key)
+    # Check LLM_PROVIDER from settings.py
+    # If not "fallback" → use LLM for smart classification
+    # If "fallback"     → use keyword matching (no API key needed)
 
-    api_key = os.getenv("ANTHROPIC_API_KEY") or os.getenv("OPENAI_API_KEY")
-
-    if api_key:
+    if LLM_PROVIDER != "fallback":
         # ── LLM MODE ──────────────────────────────────────────
         try:
-            intent = await _classify_with_llm(message, api_key)
+            intent = await _classify_with_llm(message)
             intent.raw_message = message
             return intent
         except Exception as e:
@@ -97,9 +96,9 @@ async def classify(message: str, session_id: str = "") -> Intent:
             return _fallback_intent(message)
     else:
         # ── FALLBACK MODE ─────────────────────────────────────
-        # No API key configured — use keyword matching
-        # This lets you build and test all workflows right now
-        print("[intent_classifier] No API key found, using keyword fallback")
+        # LLM_PROVIDER=fallback in .env — use keyword matching
+        # This lets you build and test all workflows without any API key
+        print("[intent_classifier] Fallback mode — using keyword matching")
         return _fallback_intent(message)
 
 
@@ -108,21 +107,30 @@ async def classify(message: str, session_id: str = "") -> Intent:
 # Only called when an API key is available
 # ============================================================
 
-async def _classify_with_llm(message: str, api_key: str) -> Intent:
+async def _classify_with_llm(message: str) -> Intent:
     """
     Sends the message to the LLM and parses the structured response.
-    Supports both Anthropic (Claude) and OpenAI (GPT-4).
+    Uses get_llm() from settings.py — automatically picks
+    Groq, Anthropic, or OpenAI based on LLM_PROVIDER in .env.
     """
+
+    # Get LLM instance from settings — fast=True uses smaller/faster model
+    # which is perfect for intent classification
+    llm = get_llm(fast=True)
+
+    if llm is None:
+        print("[intent_classifier] get_llm() returned None, using fallback")
+        return _fallback_intent(message)
 
     prompt = _build_prompt(message)
 
-    # ── Detect which LLM to use based on which key is set ──
-    if os.getenv("ANTHROPIC_API_KEY"):
-        raw_response = await _call_anthropic(prompt)
-    else:
-        raw_response = await _call_openai(prompt)
+    # Invoke the LLM — works the same for Groq, Anthropic, OpenAI
+    # because all use LangChain's unified interface
+    response = llm.invoke(prompt)
+    raw_text = response.content
 
-    return _parse_llm_response(raw_response, message)
+    print(f"[intent_classifier] LLM ({LLM_PROVIDER}) responded successfully")
+    return _parse_llm_response(raw_text, message)
 
 
 def _build_prompt(message: str) -> str:
@@ -165,47 +173,6 @@ Rules:
 - If the message mentions sponsor, monthly, long-term, support a child → child_sponsorship
 - If truly unclear, set needs_clarification to true and suggest a clarification question
 - Always return valid JSON only"""
-
-
-async def _call_anthropic(prompt: str) -> str:
-    """
-    Calls the Anthropic Claude API.
-    Requires ANTHROPIC_API_KEY in .env
-    Switch model name here when needed.
-    """
-    import anthropic
-
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-
-    response = client.messages.create(
-        model="claude-3-5-haiku-20241022",   # fast and cheap, good for classification
-        max_tokens=300,
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response.content[0].text
-
-
-async def _call_openai(prompt: str) -> str:
-    """
-    Calls the OpenAI GPT-4 API.
-    Requires OPENAI_API_KEY in .env
-    """
-    from openai import OpenAI
-
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",    # fast and cheap, good for classification
-        max_tokens=300,
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response.choices[0].message.content
 
 
 def _parse_llm_response(raw_response: str, original_message: str) -> Intent:
@@ -402,7 +369,7 @@ if __name__ == "__main__":
 
     async def run_tests():
         print("=" * 60)
-        print("Testing intent_classifier.py (fallback mode)")
+        print(f"Testing intent_classifier.py (mode: {LLM_PROVIDER})")
         print("=" * 60)
         for msg in test_messages:
             intent = await classify(msg)
