@@ -1,18 +1,19 @@
-const mongoose = require("mongoose");
-
-const donationSchema = new mongoose.Schema(
-  {
-    donor: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    },
-    amount: {
-      type: Number,
-      required: true
-    },
-    message: String
+const donationSchema = new mongoose.Schema({
+  amount: {
+    type: Number,
+    required: true
   },
-  { timestamps: true }
-);
+  message: String,
+  donor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
+  orphanage: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  }
+}, { timestamps: true });
 
 module.exports = mongoose.model("Donation", donationSchema);

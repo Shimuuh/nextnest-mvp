@@ -1,8 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const Donation = require("../models/Donation");
-const { protect, authorize } = require("../middleware/authMiddleware");
 
+const {
+  createDonation,
+  getMyDonations,
+  getOrphanageDonations
+} = require("../controllers/donationController");
+
+const { protect, authorize } = require("../middleware/authMiddleware");
 // Create donation (only donor)
 router.post("/", protect, authorize("donor"), async (req, res) => {
   try {
