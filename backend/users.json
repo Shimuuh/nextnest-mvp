@@ -1,0 +1,158 @@
+[
+  {
+    "email": "test@example.com",
+    "role": "donor"
+  },
+  {
+    "email": "admin@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphan@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "donor@test.com",
+    "role": "donor"
+  },
+  {
+    "email": "test3@test.com",
+    "role": "donor"
+  },
+  {
+    "email": "orphanage_1772196523928@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196523928@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196556869@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196556869@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196602337@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196602337@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196617010@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196617010@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196712081@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196712081@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196758033@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196758033@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196790325@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196790325@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196838612@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196838612@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196906931@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196906931@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772196960797@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772196960797@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772197080618@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772197080618@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772197832384@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772197832384@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772202805730@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772202805730@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772203060244@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772203060244@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772203364826@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772203364826@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772203681448@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772203681448@test.com",
+    "role": "admin"
+  },
+  {
+    "email": "orphanage_1772209507993@test.com",
+    "role": "orphanage"
+  },
+  {
+    "email": "admin_1772209507993@test.com",
+    "role": "admin"
+  }
+]
