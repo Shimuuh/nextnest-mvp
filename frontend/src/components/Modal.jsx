@@ -11,19 +11,19 @@ export default function Modal({ isOpen, onClose, title, children }) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+                        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
                     />
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden"
+                        className="relative w-full max-w-lg bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden"
                     >
-                        <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                            <h2 className="text-xl font-bold text-slate-100">{title}</h2>
+                        <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                            <h2 className="text-xl font-bold text-slate-900">{title}</h2>
                             <button
                                 onClick={onClose}
-                                className="p-2 text-slate-400 hover:text-slate-100 transition-colors rounded-lg hover:bg-slate-800"
+                                className="p-2 text-slate-500 hover:text-slate-700 transition-colors rounded-lg hover:bg-slate-200"
                             >
                                 <X className="h-5 w-5" />
                             </button>

@@ -18,6 +18,11 @@ const Chatbot = () => {
   };
 
   useEffect(() => {
+    window.openChatbot = () => setIsOpen(true);
+    return () => { delete window.openChatbot; };
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       scrollToBottom();
     }
@@ -34,8 +39,35 @@ const Chatbot = () => {
 
     try {
       const res = await api.post('/ai/chat', { message: userMessage });
-      const reply = res.data.result?.reply || "I'm sorry, I couldn't process that.";
+      const result = res.data.result || {};
+      const reply = result.reply || "I'm sorry, I couldn't process that.";
+
       setMessages(prev => [...prev, { role: 'assistant', text: reply }]);
+
+      // Fallback intent extraction if LLM misses the strict JSON action schema
+      let amountToDonate = Number(result.amount) || 0;
+      const lowerMessage = userMessage.toLowerCase();
+
+      if (amountToDonate === 0 && lowerMessage.includes('donate')) {
+        const match = lowerMessage.match(/donate\s*(?:rs\.?|\$|inr)?\s*(\d+)/i) || lowerMessage.match(/(\d+)/);
+        if (match && match[1]) {
+          amountToDonate = Number(match[1]);
+        }
+      }
+
+      const shouldProcessDonation = result.action === 'donate' || (lowerMessage.includes('donate') && amountToDonate > 0);
+
+      if (shouldProcessDonation && amountToDonate > 0) {
+        setLoading(true);
+        await new Promise(r => setTimeout(r, 1500));
+        try {
+          await api.post('/donations', { amount: amountToDonate, message: "AI Chatbot Autonomous Donation" });
+          setMessages(prev => [...prev, { role: 'assistant', text: `✅ Autonomous transfer complete. Securely processed your donation of ₹${amountToDonate}. Thank you for your incredible generosity. You can see it reflected dynamically on your dashboard now.` }]);
+          window.dispatchEvent(new Event('donation_updated'));
+        } catch (err) {
+          setMessages(prev => [...prev, { role: 'assistant', text: `❌ I'm sorry, but something went wrong securely processing your ₹${amountToDonate} donation.` }]);
+        }
+      }
     } catch (error) {
       setMessages(prev => [...prev, { role: 'assistant', text: "Sorry, the AI service is currently unavailable." }]);
     } finally {
@@ -113,8 +145,8 @@ const Chatbot = () => {
 
                     {/* Bubble */}
                     <div className={`p-3 text-sm rounded-2xl shadow-sm ${msg.role === 'user'
-                        ? 'bg-indigo-600 text-white rounded-tr-sm'
-                        : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm'
+                      ? 'bg-indigo-600 text-white rounded-tr-sm'
+                      : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm'
                       }`}>
                       {msg.text}
                     </div>

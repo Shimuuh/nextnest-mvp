@@ -9,6 +9,11 @@ import SchemeMatches from "./pages/SchemeMatches";
 import Transition from "./pages/Transition";
 import Login from "./pages/Login";
 import Chatbot from "./components/Chatbot";
+import Toast from "./components/Toast";
+import { io } from "socket.io-client";
+import { useEffect } from "react";
+
+const socket = io("http://localhost:5000");
 
 const PrivateRoute = ({ children, roles }) => {
   const { user, loading } = useAuth();
@@ -38,6 +43,31 @@ const RootRedirect = () => {
 };
 
 function App() {
+  useEffect(() => {
+    socket.on("new_donation", (data) => {
+      window.dispatchEvent(new CustomEvent('trigger_toast', {
+        detail: {
+          message: `New Donation: ${data.amount} INR - ${data.message}`,
+          type: 'success'
+        }
+      }));
+    });
+
+    socket.on("new_child", (data) => {
+      window.dispatchEvent(new CustomEvent('trigger_toast', {
+        detail: {
+          message: `New Child Registered: ${data.name} (Age: ${data.age})`,
+          type: 'info'
+        }
+      }));
+    });
+
+    return () => {
+      socket.off("new_donation");
+      socket.off("new_child");
+    };
+  }, []);
+
   return (
     <AuthProvider>
       <Router>
@@ -100,6 +130,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Chatbot />
+        <Toast />
       </Router>
     </AuthProvider>
   );

@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 const donationSchema = new mongoose.Schema({
   amount: {
     type: Number,
@@ -6,27 +8,19 @@ const donationSchema = new mongoose.Schema({
   message: String,
   fundType: {
     type: String,
-    enum: ["bulk", "accessory", "individual_sponsorship", "medical"],
+    enum: ["bulk", "accessory", "individual_sponsorship", "medical", "general"],
     required: true,
-    default: "bulk"
+    default: "general"
   },
   targetRef: {
-    // Could be an Orphanage (bulk), Child (sponsorship), or MedicalCase
     type: mongoose.Schema.Types.ObjectId,
     refPath: 'targetModel'
   },
   targetModel: {
     type: String,
-    required: true,
     enum: ['User', 'Child', 'MedicalCase'],
-    default: 'User'
+    required: false
   },
-  utilizationTracker: [{
-    amountUsed: Number,
-    purpose: String,
-    date: { type: Date, default: Date.now },
-    receiptUrl: String
-  }],
   donor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -35,7 +29,7 @@ const donationSchema = new mongoose.Schema({
   orphanage: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: false // Optional for general platform donations
   }
 }, { timestamps: true });
 

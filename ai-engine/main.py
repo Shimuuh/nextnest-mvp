@@ -21,7 +21,7 @@ from agent.chat_agent import chat_with_data
 # We will build this file in Step 3
 # For now it is imported but operator.py does not exist yet
 # Uncomment this once operator.py is ready:
-# from agent.operator import handle_request
+from agent.operator import handle_request
 
 # ------------------------------------------------------------
 # App Setup
@@ -137,6 +137,14 @@ def health_check():
         "service": "HopeLink AI Engine",
         "version": "1.0.0"
     }
+
+@app.post("/agent")
+async def process_agent_request(req: UserRequest):
+    """
+    Primary endpoint for Node.js to communicate with the Agent.
+    Routes the request to operator.py
+    """
+    return await handle_request(req)
 
 # ------------------------------------------------------------
 # ENDPOINT 3: GET /workflows

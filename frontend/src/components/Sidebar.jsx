@@ -60,14 +60,14 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="flex flex-col w-64 bg-slate-900 border-r border-slate-800 text-slate-300 transition-all duration-300 overflow-y-auto">
+        <div className="flex flex-col w-64 bg-white border-r border-slate-200 text-slate-600 transition-all duration-300 overflow-y-auto shadow-sm z-20">
             <div className="p-6">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent flex justify-center items-center h-8">
-                    NextNest
+                <h2 className="text-2xl font-black text-blue-800 flex items-center h-8 tracking-tight">
+                    <span className="text-emerald-600 mr-2">✦</span> NextNest
                 </h2>
             </div>
 
-            <nav className="flex-1 px-4 space-y-2 mt-4">
+            <nav className="flex-1 px-4 space-y-1 mt-4">
                 {navItems
                     .filter(item => item.roles.includes(user?.role))
                     .map((item) => (
@@ -75,32 +75,38 @@ export default function Sidebar() {
                             key={item.name}
                             to={item.path}
                             className={({ isActive }) => cn(
-                                "flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group",
+                                "flex items-center space-x-3 px-4 py-3 transition-all duration-200 group font-medium",
                                 isActive
-                                    ? "bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-blue-400 border border-blue-500/30"
-                                    : "hover:bg-slate-800/50 hover:text-slate-100"
+                                    ? "bg-blue-50 text-blue-700 rounded-lg shadow-sm"
+                                    : "hover:bg-slate-50 hover:text-slate-900 rounded-lg text-slate-600"
                             )}
                         >
-                            <item.icon className={cn(
-                                "h-5 w-5 transition-colors",
-                                location.pathname === item.path ? "text-blue-400" : "text-slate-500 group-hover:text-blue-400"
-                            )} />
-                            <span className="font-medium">{item.name}</span>
+                            {({ isActive }) => (
+                                <>
+                                    <item.icon className={cn(
+                                        "h-5 w-5 transition-colors",
+                                        isActive ? "text-blue-600" : "text-slate-400 group-hover:text-blue-500"
+                                    )} />
+                                    <span>{item.name}</span>
+                                </>
+                            )}
                         </NavLink>
                     ))}
             </nav>
 
-            <div className="p-4 border-t border-slate-800 space-y-2">
-                <button className="flex items-center space-x-3 w-full px-4 py-3 rounded-xl transition-all duration-200 hover:bg-slate-800/50 text-slate-400 hover:text-slate-100 group">
-                    <Settings className="h-5 w-5 text-slate-500 group-hover:text-slate-400" />
-                    <span className="font-medium">Settings</span>
+            <div className="p-4 border-t border-slate-100 space-y-1">
+                <button
+                    onClick={() => window.dispatchEvent(new CustomEvent('trigger_toast', { detail: { message: 'Advanced System Settings are restricted to SuperAdmins.', type: 'error' } }))}
+                    className="flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all duration-200 hover:bg-slate-50 text-slate-600 hover:text-slate-900 font-medium group">
+                    <Settings className="h-5 w-5 text-slate-400 group-hover:text-slate-600" />
+                    <span>Settings</span>
                 </button>
                 <button
                     onClick={logout}
-                    className="flex items-center space-x-3 w-full px-4 py-3 rounded-xl transition-all duration-200 hover:bg-red-500/10 text-slate-400 hover:text-red-400 group"
+                    className="flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all duration-200 hover:bg-red-50 text-slate-600 hover:text-red-600 font-medium group"
                 >
-                    <LogOut className="h-5 w-5 text-slate-500 group-hover:text-red-400" />
-                    <span className="font-medium">Logout</span>
+                    <LogOut className="h-5 w-5 text-slate-400 group-hover:text-red-500" />
+                    <span>Logout</span>
                 </button>
             </div>
         </div>

@@ -35,7 +35,7 @@ const childSchema = new mongoose.Schema(
       recommendedPathways: [String]
     },
     // Associated records
-    achievements: [{ type: mongoose.Schema.Types.ObjectId, ref: "Achievement" }],
+
     documents: [{
       type: { type: String, enum: ["aadhaar", "birth_certificate", "education", "other"] },
       documentUrl: String,
