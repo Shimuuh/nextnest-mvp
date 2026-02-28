@@ -14,14 +14,44 @@
 
 from agent.intent_classifier import classify, Intent
 from agent.response_builder import build_response, build_clarification, build_error
-from config.settings import ALWAYS_CONFIRM_ABOVE, MAX_DONATION_AMOUNT
+from config.settings import ALWAYS_CONFIRM_ABOVE, MAX_DONATION_AMOUNT, validate_settings, LLM_PROVIDER
 from memory.user_context import get_session, update_session
 
-# Import all 4 workflows
+# Import available workflows
+# Teammate's workflows will be uncommented once they finish
 from workflows.education_donation import run as run_education
 from workflows.emergency_medical import run as run_emergency
-from workflows.orphanage_supply import run as run_supply
-from workflows.child_sponsorship import run as run_sponsorship
+# from workflows.orphanage_supply import run as run_supply
+# from workflows.child_sponsorship import run as run_sponsorship
+
+# ============================================================
+# STARTUP CHECK
+# Runs once when the operator is first imported.
+# Prints a clear summary of what is configured.
+# ============================================================
+
+_startup_status = validate_settings()
+
+print("=" * 50)
+print("HopeLink AI Engine — Operator Starting")
+print("=" * 50)
+print(f"  LLM Provider : {_startup_status['llm_provider']}")
+print(f"  LLM Model    : {_startup_status['llm_model']}")
+print(f"  Backend URL  : {_startup_status['backend_url']}")
+print(f"  Max Donation : {_startup_status['max_donation']}")
+
+if _startup_status["warnings"]:
+    for w in _startup_status["warnings"]:
+        print(f"  ⚠️  {w}")
+
+if not _startup_status["ready"]:
+    for issue in _startup_status["issues"]:
+        print(f"  ❌ {issue}")
+    print("  Fix the above issues before sending real requests.")
+else:
+    print(f"  ✅ System ready using {LLM_PROVIDER.upper()}")
+
+print("=" * 50)
 
 # ============================================================
 # REQUEST / RESPONSE MODELS
@@ -46,8 +76,8 @@ class UserRequest(BaseModel):
 WORKFLOW_REGISTRY = {
     "education_donation": run_education,
     "emergency_medical":  run_emergency,
-    "orphanage_supply":   run_supply,
-    "child_sponsorship":  run_sponsorship,
+    # "orphanage_supply":   run_supply,      # uncomment when teammate finishes
+    # "child_sponsorship":  run_sponsorship, # uncomment when teammate finishes
 }
 
 # ============================================================

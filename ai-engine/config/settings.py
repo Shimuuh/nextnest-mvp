@@ -18,17 +18,24 @@ load_dotenv()
 # any other file.
 # ============================================================
 
-# Which LLM provider to use: "anthropic" | "openai" | "fallback"
+# Which LLM provider to use: "groq" | "anthropic" | "openai" | "fallback"
+# "groq"     = FREE — recommended for this project
 # "fallback" = no LLM, uses keyword matching only (good for testing)
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "fallback")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")
 
-# Anthropic (Claude) settings
+# ── GROQ (FREE — Recommended) ────────────────────────────────
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+GROQ_MODEL   = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+# llama-3.3-70b-versatile  → best reasoning  (recommended for workflows)
+# llama-3.1-8b-instant     → fastest         (good for intent classification)
+
+# ── Anthropic (Claude) settings ──────────────────────────────
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 ANTHROPIC_MODEL   = os.getenv("ANTHROPIC_MODEL", "claude-3-5-haiku-20241022")
 # claude-3-5-haiku-20241022  → fast + cheap  (recommended for classification)
 # claude-opus-4-6            → most powerful  (use for complex reasoning)
 
-# OpenAI (GPT-4) settings
+# ── OpenAI (GPT-4) settings ──────────────────────────────────
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL   = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 # gpt-4o-mini  → fast + cheap  (recommended for classification)
@@ -113,6 +120,56 @@ SUPPLY_MAX_ORPHANAGES = int(os.getenv("SUPPLY_MAX_ORPHANAGES", "3"))
 SPONSORSHIP_MIN_AMOUNT = float(os.getenv("SPONSORSHIP_MIN_AMOUNT", "500"))
 
 # ============================================================
+# HELPER: Get the active LLM instance
+# Import and call get_llm() anywhere you need the LLM.
+# Automatically picks the right provider from LLM_PROVIDER.
+# ============================================================
+
+def get_llm(fast: bool = False):
+    """
+    Returns a ready-to-use LLM instance based on LLM_PROVIDER.
+
+    Args:
+        fast (bool): If True and using Groq, returns the faster
+                     8B model instead of 70B. Good for intent
+                     classification where speed matters more.
+
+    Returns:
+        LLM instance or None if fallback mode
+    """
+
+    if LLM_PROVIDER == "groq":
+        from langchain_groq import ChatGroq
+        model = "llama-3.1-8b-instant" if fast else GROQ_MODEL
+        return ChatGroq(
+            api_key=GROQ_API_KEY,
+            model_name=model,
+            temperature=0.1,
+            max_tokens=LLM_MAX_TOKENS
+        )
+
+    elif LLM_PROVIDER == "anthropic":
+        from langchain_anthropic import ChatAnthropic
+        return ChatAnthropic(
+            api_key=ANTHROPIC_API_KEY,
+            model=ANTHROPIC_MODEL,
+            max_tokens=LLM_MAX_TOKENS
+        )
+
+    elif LLM_PROVIDER == "openai":
+        from langchain_openai import ChatOpenAI
+        return ChatOpenAI(
+            api_key=OPENAI_API_KEY,
+            model=OPENAI_MODEL,
+            max_tokens=LLM_MAX_TOKENS
+        )
+
+    else:
+        # fallback — no LLM, keyword matching only
+        return None
+
+
+# ============================================================
 # HELPER FUNCTION
 # Call this at startup to verify everything is configured
 # ============================================================
@@ -130,6 +187,9 @@ def validate_settings() -> dict:
     warnings = []
 
     # Check LLM configuration
+    if LLM_PROVIDER == "groq" and not GROQ_API_KEY:
+        issues.append("LLM_PROVIDER is 'groq' but GROQ_API_KEY is missing in .env")
+
     if LLM_PROVIDER == "anthropic" and not ANTHROPIC_API_KEY:
         issues.append("LLM_PROVIDER is 'anthropic' but ANTHROPIC_API_KEY is missing")
 
@@ -147,9 +207,16 @@ def validate_settings() -> dict:
     if MAX_DONATION_AMOUNT > 100000:
         warnings.append(f"MAX_DONATION_AMOUNT is ₹{MAX_DONATION_AMOUNT} — very high, verify this is intentional")
 
+    # Determine active model name for display
+    active_model = {
+        "groq": GROQ_MODEL,
+        "anthropic": ANTHROPIC_MODEL,
+        "openai": OPENAI_MODEL,
+    }.get(LLM_PROVIDER, "none (fallback mode)")
+
     return {
         "llm_provider": LLM_PROVIDER,
-        "llm_model": ANTHROPIC_MODEL if LLM_PROVIDER == "anthropic" else OPENAI_MODEL,
+        "llm_model": active_model,
         "backend_url": BACKEND_API_URL,
         "max_donation": f"₹{MAX_DONATION_AMOUNT}",
         "issues": issues,       # critical problems that will break things
